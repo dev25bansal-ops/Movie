@@ -2,6 +2,8 @@
 
 Professional full-stack web application providing mood-based movie recommendations using Gemini AI and TMDB API.
 
+**GitHub Repository**: https://github.com/dev25bansalops/Movie
+
 ## 🏗️ Architecture
 
 ```
