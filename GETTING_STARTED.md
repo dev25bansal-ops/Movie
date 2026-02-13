@@ -61,7 +61,12 @@ createdb movie_recommendation_db
 psql -U postgres -c "CREATE DATABASE movie_recommendation_db;"
 ```
 
-### 4️⃣ Setup Database & Run Migrations
+### 4️⃣ Setup Database (Optional)
+
+**Note**: Database is **optional** - movie recommendations work without it.  
+**Database is only needed for**: Saving favorites and tracking search history.
+
+**If you want database features:**
 
 ```bash
 cd backend
@@ -69,7 +74,7 @@ cd backend
 # Generate Prisma Client
 npm run prisma:generate
 
-# Run database migrations
+# Run database migrations (creates tables)
 npm run prisma:migrate
 ```
 
@@ -115,8 +120,12 @@ Once both servers are running:
 1. Open http://localhost:5173 in your browser
 2. Enter a mood like: "I'm feeling happy and want to watch something fun"
 3. Click "Find Movies"
-4. Wait for AI to generate recommendations
-5. Explore the features!
+4. Wait for AI to generate recommendations (10-15 seconds)
+
+**Note**: If you see "Failed to generate recommendations" error, it may be a network connectivity issue with TMDB. Try:
+- Different network connection
+- Disabling VPN
+- Or deploying to cloud (Render.com has free tier)
 
 ## Troubleshooting
 
@@ -178,14 +187,8 @@ Ensure these files exist:
 
 - Check logs in terminal windows
 - Open browser console (F12) for frontend errors
-- Review [SETUP.md](./SETUP.md) for detailed instructions
-- Check [QUICKSTART.md](./QUICKSTART.md) for quick reference
-
-## Stopping the Application
-
-**Using start script**: Press `Ctrl+C` in terminal
-
-**Manual**: Close both terminal windows or press `Ctrl+C` in each
+- Review [QUICKSTART.md](./QUICKSTART.md) for quick reference
+- Check [README.md](./README.md) for full documentation
 
 ---
 

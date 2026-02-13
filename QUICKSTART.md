@@ -12,15 +12,17 @@ Get the AI-Powered Movie Recommendation Platform running in minutes!
 
 ---
 
-## 📝 Step 1: Database Setup
+## 📝 Step 1: Database Setup (Optional)
+
+**Database is optional** - movie recommendations work without database. Database is only needed for:
+- Saving favorites
+- Tracking search history
 
 ```bash
-# Using Docker (easiest)
+# Using Docker (recommended)
 docker run --name movie-db -e POSTGRES_DB=movie_recommendation_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:15
 
-# Or using PostgreSQL directly (psql)
-psql -U postgres
-CREATE DATABASE movie_recommendation_db;
+# Or skip database - app will work without it!
 ```
 
 ---
@@ -52,11 +54,8 @@ EOF
 
 # Replace YOUR_GEMINI_API_KEY and YOUR_TMDB_API_KEY with actual keys
 
-# Setup database
-npm run prisma:generate
-npm run prisma:migrate
-
 # Start backend (keep this terminal open)
+# Note: Can start without database - favorites/history will be disabled
 npm run dev
 ```
 
@@ -124,29 +123,31 @@ npm run format           # Format code
 ## 🐛 Common Issues
 
 ### Backend won't start?
-- Check PostgreSQL is running: `pg_isready`
-- Verify DATABASE_URL in `.env`
-- Ensure API keys are correct
+- PostgreSQL is **optional** - app works without it
+- If database is down, favorites/history will be disabled
+- API keys must be valid for features to work
 
 ### Frontend can't connect?
 - Backend must be running on port 5000
 - Check `VITE_API_URL` in `.env`
-- Open browser console for errors
+- Check TMDB network connectivity
 
 ### Database errors?
-```bash
-# Reset database
-cd backend
-npx prisma db push --force-reset
-```
+- **Not critical** - app continues without database
+- To fix: Restart PostgreSQL container or run `docker restart movie-db`
+- Backend will auto-reconnect when database is available
+
+### TMDB API not working?
+- Check network connectivity: `curl https://api.themoviedb.org`
+- May need different network connection
+- Check API key is valid
 
 ---
 
 ## 📚 Next Steps
 
-- Read [SETUP.md](./SETUP.md) for detailed setup
-- Check [DEVELOPMENT.md](./DEVELOPMENT.md) for customization
-- Review [README.md](./README.md) for architecture
+- Read [GETTING_STARTED.md](./GETTING_STARTED.md) for detailed setup
+- Review [README.md](./README.md) for architecture and features
 
 ---
 
