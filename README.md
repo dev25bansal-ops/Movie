@@ -308,10 +308,6 @@ npm run build
 docker-compose up -d
 ```
 
-## 📝 License
-
-This project is built for AWS Cloud Club VIT Chennai.
-
 ## 👥 Team
 
 Senior Full-Stack Developer with experience in:
