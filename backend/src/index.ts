@@ -34,7 +34,7 @@ app.use('/api', limiter);
 
 app.use('/api', routes);
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_req: Request, res: Response) => {
   res.json({
     message: 'AI-Powered Movie Recommendation API',
     version: '1.0.0',

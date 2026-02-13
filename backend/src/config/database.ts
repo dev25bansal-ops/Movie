@@ -7,19 +7,10 @@ class Database {
   static getInstance(): PrismaClient {
     if (!Database.instance) {
       Database.instance = new PrismaClient({
-        log: [
-          { level: 'query', emit: 'event' },
-          { level: 'error', emit: 'stdout' },
-          { level: 'warn', emit: 'stdout' },
-        ],
+        log: process.env.NODE_ENV === 'development'
+          ? ['query', 'error', 'warn']
+          : ['error', 'warn'],
       });
-
-      if (process.env.NODE_ENV === 'development') {
-        Database.instance.$on('query', (e) => {
-          logger.debug('Query: ' + e.query);
-          logger.debug('Duration: ' + e.duration + 'ms');
-        });
-      }
 
       Database.instance.$connect()
         .then(() => {

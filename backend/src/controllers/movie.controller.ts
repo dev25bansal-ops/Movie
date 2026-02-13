@@ -71,7 +71,7 @@ export class MovieController {
     }
   }
 
-  async getTrending(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async getTrending(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const movies = await movieService.getTrendingMovies();
 

@@ -11,7 +11,7 @@ router.use('/movies', movieRoutes);
 router.use('/favorites', favoriteRoutes);
 router.use('/history', historyRoutes);
 
-router.get('/health', (req, res) => {
+router.get('/health', (_req, res) => {
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),

@@ -1,6 +1,6 @@
 import { tmdbClient, getImageUrl, getBackdropUrl } from '../config/tmdb';
 import { GenreMap, GenreIdMap } from '../types/tmdb.types';
-import type { MovieResponse, RecommendationResponse } from '../types/api.types';
+import type { MovieResponse } from '../types/api.types';
 
 export class MovieService {
   async getMoviesByGenreIds(
