@@ -3,6 +3,10 @@ import type { FavoriteRequest, UserFavoritesResponse } from '../types/api.types'
 
 export class FavoriteService {
   async addToFavorite(userId: string, favoriteData: FavoriteRequest): Promise<UserFavoritesResponse> {
+    if (!db) {
+      throw new Error('Database not available - favorites feature disabled');
+    }
+
     const existing = await db.favorite.findUnique({
       where: {
         userId_movieId: {
@@ -33,6 +37,10 @@ export class FavoriteService {
   }
 
   async getUserFavorites(userId: string): Promise<UserFavoritesResponse[]> {
+    if (!db) {
+      throw new Error('Database not available - favorites feature disabled');
+    }
+
     const favorites = await db.favorite.findMany({
       where: { userId },
       orderBy: { addedAt: 'desc' },
@@ -42,6 +50,10 @@ export class FavoriteService {
   }
 
   async removeFromFavorite(userId: string, movieId: number): Promise<void> {
+    if (!db) {
+      throw new Error('Database not available - favorites feature disabled');
+    }
+
     await db.favorite.deleteMany({
       where: {
         userId,
@@ -51,6 +63,10 @@ export class FavoriteService {
   }
 
   async isFavorite(userId: string, movieId: number): Promise<boolean> {
+    if (!db) {
+      return false;
+    }
+
     const favorite = await db.favorite.findUnique({
       where: {
         userId_movieId: {
