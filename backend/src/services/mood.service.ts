@@ -19,9 +19,12 @@ export class MoodService {
         genres,
         movies,
       };
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error generating recommendations:', error);
-      throw new Error('Failed to generate recommendations');
+      
+      // Provide more specific error message
+      const errorMessage = error?.message || 'Unknown error';
+      throw new Error(`Failed to generate recommendations: ${errorMessage}`);
     }
   }
 }

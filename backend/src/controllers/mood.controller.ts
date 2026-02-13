@@ -12,13 +12,19 @@ export class MoodController {
 
       const recommendations: RecommendationResponse = await moodService.getRecommendations(mood);
 
+      // History is optional - don't fail if it's not connected
       if (userId) {
-        await historyService.addToHistory(
-          userId,
-          recommendations.mood,
-          recommendations.genres,
-          recommendations.movies.length
-        );
+        try {
+          await historyService.addToHistory(
+            userId,
+            recommendations.mood,
+            recommendations.genres,
+            recommendations.movies.length
+          );
+        } catch (historyError) {
+          console.warn('Failed to save to history:', historyError);
+          // Continue without history
+        }
       }
 
       const response: ApiResponse<RecommendationResponse> = {

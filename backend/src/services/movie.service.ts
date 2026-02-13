@@ -19,9 +19,9 @@ export class MovieService {
       });
 
       return data.results.slice(0, limit).map(this.mapToMovieResponse);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching movies by genres:', error);
-      throw error;
+      throw new Error(`TMDB API error: ${error?.response?.data?.status_message || error?.message || 'Failed to fetch movies'}`);
     }
   }
 
