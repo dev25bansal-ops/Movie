@@ -23,15 +23,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-900;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-dark-700 rounded-full;
+  background: #1e293b;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-dark-600;
+  background: #334155;
 }
 
 .line-clamp-2 {
